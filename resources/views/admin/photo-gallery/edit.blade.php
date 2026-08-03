@@ -7,7 +7,14 @@
     <div class="col-lg-7">
         <div class="card p-4">
             <h6 class="fw-semibold mb-3">Edit Photo</h6>
-            <img src="{{ $photoGallery->image_url }}" class="mb-3 rounded" style="max-width:200px;">
+            <div class="mb-3">
+                <a href="{{ $photoGallery->image_url }}" target="_blank" rel="noopener noreferrer" title="View full-size image">
+                    <img src="{{ $photoGallery->image_url }}" class="rounded d-block" style="max-width:200px; max-height:200px; object-fit:cover;" alt="{{ $photoGallery->title }}">
+                </a>
+                <a href="{{ $photoGallery->image_url }}" target="_blank" rel="noopener noreferrer" class="small d-inline-block mt-2">
+                    <i class="bi bi-box-arrow-up-right"></i> View current image
+                </a>
+            </div>
             <form action="{{ route('admin.photo-gallery.update', $photoGallery) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')

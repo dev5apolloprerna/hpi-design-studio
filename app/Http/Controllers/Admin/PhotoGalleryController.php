@@ -61,9 +61,9 @@ class PhotoGalleryController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            // Remove the old file before storing the new one, via the helper.
-            delete_uploaded_file($photoGallery->image);
+            $oldImage = $photoGallery->image;
             $data['image'] = upload_file($request->file('image'), 'photo-gallery');
+            delete_uploaded_file($oldImage);
         }
 
         $photoGallery->update($data);
