@@ -25,7 +25,11 @@
             <tbody>
                 @forelse ($photos as $photo)
                     <tr>
-                        <td><img src="{{ $photo->image_url }}" class="thumb" alt="{{ $photo->title }}"></td>
+                        <td>
+                            <a href="{{ $photo->image_url }}" target="_blank" rel="noopener noreferrer" title="View full-size image">
+                                <img src="{{ $photo->image_url }}" class="thumb" alt="{{ $photo->title }}" loading="lazy">
+                            </a>
+                        </td>
                         <td class="fw-semibold">{{ $photo->title }}</td>
                         <td>{{ $photo->category->name ?? '—' }}</td>
                         <td>
@@ -34,6 +38,9 @@
                             </span>
                         </td>
                         <td class="text-end">
+                            <a href="{{ $photo->image_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary" title="View image">
+                                <i class="bi bi-eye"></i>
+                            </a>
                             <a href="{{ route('admin.photo-gallery.edit', $photo) }}" class="btn btn-sm btn-outline-secondary">
                                 <i class="bi bi-pencil"></i>
                             </a>
